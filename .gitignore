@@ -1,0 +1,7 @@
+node_modules
+.next
+out
+.DS_Store
+
+# Original full-size source images (web copies live in public/images)
+/images/

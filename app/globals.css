@@ -1,7 +1,7 @@
 :root {
   --bg: #0b0b0b;
   --inset: 12px;      /* frame around each card */
-  --peek: 8rem;       /* how much of the next card shows below */
+  --peek: min(8rem, 15svh);  /* how much of the next card shows below */
 }
 
 @media (min-width: 900px) {
@@ -72,6 +72,37 @@ html, body {
   .slide--whole .media img {
     object-fit: contain;
     object-position: center;
+  }
+}
+
+/* Short landscape screens (phones held sideways): show the title image whole. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .slide--whole .media img {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+/* Portrait screens: a full-height card would crop the 16:9 stills to a sliver,
+   so each card takes the photo's own shape and pins in the middle of the
+   screen, letterboxed like a film. The gap keeps the next card waiting below. */
+@media (max-aspect-ratio: 1/1) {
+  :root {
+    --card-h: calc((100vw - 2 * var(--inset)) * 9 / 16 + 2 * var(--inset));
+    --stick: calc((100svh - var(--card-h)) / 2);
+  }
+
+  .slide,
+  .slide--final {
+    height: var(--card-h);
+  }
+
+  .slide--sticky {
+    top: var(--stick);
+  }
+
+  .slide + .slide {
+    margin-top: calc(var(--stick) + 2rem);
   }
 }
 

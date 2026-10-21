@@ -32,6 +32,8 @@ export default function StackingHero({ slides }) {
         step: height + overlap,
         viewport: window.innerHeight,
         inset: Number.parseFloat(getComputedStyle(first).borderTopWidth) || 0,
+        // Where cards pin: 0 on desktop, mid-screen on portrait phones.
+        stick: Number.parseFloat(getComputedStyle(first).top) || 0,
       });
     };
 
@@ -68,11 +70,12 @@ function Slide({ slide, index, isFinal, layout }) {
   const step = layout?.step ?? 1;
   const viewport = layout?.viewport ?? 1;
   const inset = layout?.inset ?? 0;
+  const stick = layout?.stick ?? 0;
 
-  // Card enters at the bottom of the screen, pins at the top, then is covered.
+  // Card enters at the bottom of the screen, pins, then is covered.
   const enter = top - viewport;
-  const pinned = top;
-  const covered = top + step;
+  const pinned = top - stick;
+  const covered = top + step - stick;
 
   const y = useTransform(
     scrollY,

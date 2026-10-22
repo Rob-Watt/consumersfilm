@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useAuth } from "./AuthProvider";
 import { navItems } from "../lib/nav";
 import { site } from "../lib/site";
 
@@ -11,6 +12,7 @@ export default function SiteNav() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const dialogRef = useRef(null);
+  const { session, openDialog, signOut } = useAuth();
 
   // Hide on scroll down, reveal on scroll up (like a24films.com).
   useEffect(() => {
@@ -34,6 +36,14 @@ export default function SiteNav() {
 
   const isActive = (slug) => pathname?.startsWith(`/${slug}`);
   const closeMenu = () => setMenuOpen(false);
+
+  // Top-right account links, like A24's "Become a member / Log in".
+  const accountLinks = session
+    ? [{ label: "Log out", onClick: signOut }]
+    : [
+        { label: "Sign up", onClick: () => openDialog("join") },
+        { label: "Log in", onClick: () => openDialog("login") },
+      ];
 
   return (
     <header className={`site-nav${hidden && !menuOpen ? " is-hidden" : ""}`}>
@@ -59,6 +69,15 @@ export default function SiteNav() {
         </Link>
 
         <div className="site-nav__end">
+          <ul className="site-nav__account">
+            {accountLinks.map(({ label, onClick }, i) => (
+              <li key={label} style={{ "--i": navItems.length - 1 - i }}>
+                <button type="button" className="site-nav__link" onClick={onClick}>
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
           <button
             type="button"
             className="site-nav__menu-button"
@@ -108,6 +127,21 @@ export default function SiteNav() {
               ))}
             </ul>
           </nav>
+          <ul className="menu-drawer__account">
+            {accountLinks.map(({ label, onClick }) => (
+              <li key={label}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    closeMenu();
+                    onClick();
+                  }}
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       </dialog>
     </header>

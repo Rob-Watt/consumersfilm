@@ -1,5 +1,6 @@
 import { Cinzel, DM_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "../components/AuthProvider";
 import SiteNav from "../components/SiteNav";
 import { site, absoluteUrl } from "../lib/site";
 
@@ -51,8 +52,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang={site.language} className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
       <body>
-        <SiteNav />
-        {children}
+        <AuthProvider>
+          <SiteNav />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

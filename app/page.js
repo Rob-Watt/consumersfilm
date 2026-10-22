@@ -1,4 +1,5 @@
 import StackingHero from "../components/StackingHero";
+import WelcomePrompt from "../components/WelcomePrompt";
 import { site, basePath, movieJsonLd } from "../lib/site";
 
 const slides = [
@@ -21,6 +22,7 @@ export default function Home() {
         {site.title}: {site.tagline}
       </h1>
       <StackingHero slides={slides} />
+      <WelcomePrompt />
     </main>
   );
 }

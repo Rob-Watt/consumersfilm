@@ -5,3 +5,6 @@ out
 
 # Original full-size source images (web copies live in public/images)
 /images/
+
+# Local secrets (Supabase keys for local testing)
+.env*.local

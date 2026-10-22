@@ -9,6 +9,7 @@ export default function sitemap() {
   const notes = getNotes();
   return [
     { url: absoluteUrl("/"), lastModified: now, priority: 1 },
+    { url: absoluteUrl("/privacy/"), lastModified: now, priority: 0.2 },
     ...navItems
       .filter(({ ready, slug }) => ready || (slug === "notes" && notes.length))
       .map(({ slug }) => ({ url: absoluteUrl(`/${slug}/`), lastModified: now, priority: 0.7 })),

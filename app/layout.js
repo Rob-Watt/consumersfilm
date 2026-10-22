@@ -1,5 +1,11 @@
+import { Cinzel, Inter } from "next/font/google";
 import "./globals.css";
+import SiteNav from "../components/SiteNav";
 import { site, absoluteUrl } from "../lib/site";
+
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+// Close to the serif title lettering on the poster art.
+const serif = Cinzel({ subsets: ["latin"], variable: "--font-serif" });
 
 const description = site.description || `${site.title} — ${site.tagline}`;
 const shareImage = {
@@ -41,8 +47,11 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang={site.language}>
-      <body>{children}</body>
+    <html lang={site.language} className={`${sans.variable} ${serif.variable}`}>
+      <body>
+        <SiteNav />
+        {children}
+      </body>
     </html>
   );
 }

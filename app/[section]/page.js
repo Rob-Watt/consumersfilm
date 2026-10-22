@@ -4,7 +4,9 @@ import { navItems } from "../../lib/nav";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return navItems.map(({ slug }) => ({ section: slug }));
+  return navItems
+    .filter(({ ownPage }) => !ownPage)
+    .map(({ slug }) => ({ section: slug }));
 }
 
 export async function generateMetadata({ params }) {

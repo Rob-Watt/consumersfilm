@@ -347,3 +347,290 @@ html:has(.menu-drawer[open]) {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* ---------- Shop (layout after shop.a24films.com) ---------- */
+
+.shop {
+  --shop-gutter: clamp(16px, 6vw, 86px);
+  --tile: #e4e4e4;          /* placeholder / product image background */
+  --muted: #787878;
+  padding: calc(var(--inset) + 88px) var(--shop-gutter) 120px;
+  color: #000;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.shop-hero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  align-items: center;
+  min-height: calc(100svh - 160px);
+  margin-bottom: 96px;
+}
+
+.shop-hero__media {
+  grid-column: 1 / 9;
+  aspect-ratio: 4 / 3;
+  background: var(--tile);
+}
+
+.shop-hero__media img,
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.shop-hero__details {
+  grid-column: 10 / 13;
+}
+
+.shop-hero__eyebrow,
+.product-card__status {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.shop-hero__title {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.shop-hero__price {
+  margin: 16px 0 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.shop-button {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 14px 28px;
+  border: 1px solid currentColor;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.shop-hero__placeholder {
+  display: grid;
+  gap: 12px;
+}
+
+.shop-hero__bar {
+  display: block;
+  height: 32px;
+  background: var(--tile);
+}
+
+.shop-hero__bar--short { width: 60%; }
+
+/* Section label: thin rule with an underlined label, like A24's. */
+.shop-eyebrow {
+  border-top: 1px solid #000;
+  padding-top: 6px;
+  margin-bottom: 56px;
+}
+
+.shop-eyebrow h2 {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.product-row {
+  margin-bottom: 112px;
+}
+
+.product-row__viewport {
+  position: relative;
+}
+
+.product-row__track {
+  --cols: 4;
+  --gap: 24px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.product-row__track::-webkit-scrollbar { display: none; }
+
+.product-row__track > * { scroll-snap-align: start; }
+
+.product-row__arrow {
+  position: absolute;
+  top: 0;
+  right: calc(-1 * var(--shop-gutter) + 8px);
+  height: calc((100% - 60px));
+  max-height: 100%;
+  width: calc(var(--shop-gutter) - 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #000;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.product-row__arrow--prev {
+  right: auto;
+  left: calc(-1 * var(--shop-gutter) + 8px);
+  transform: scaleX(-1);
+}
+
+.product-row__arrow[hidden] { display: none; }
+
+.product-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card__media {
+  aspect-ratio: 1 / 1;
+  margin-bottom: 16px;
+  background: var(--tile);
+}
+
+@media (hover: hover) {
+  a.product-card:hover .product-card__title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.product-card__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.product-card__price {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.product-card__bar {
+  display: block;
+  height: 10px;
+  margin-top: 8px;
+  background: var(--tile);
+}
+
+.product-card__bar--short { width: 40%; }
+
+.shop-collection {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  align-items: center;
+  padding-top: 64px;
+  border-top: 1px solid #000;
+}
+
+.shop-collection__title {
+  grid-column: 1 / 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.shop-collection__grid {
+  grid-column: 4 / 13;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.shop-collection__grid > :first-child {
+  grid-row: span 2;
+}
+
+.shop-collection__grid > :first-child .product-card__media {
+  aspect-ratio: auto;
+  height: calc(100% - 50px);
+}
+
+@media (max-width: 800px) {
+  .shop-hero,
+  .shop-collection {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+    min-height: 0;
+  }
+
+  .shop-hero__media,
+  .shop-hero__details,
+  .shop-collection__title,
+  .shop-collection__grid {
+    grid-column: 1;
+  }
+
+  .shop-hero { margin-bottom: 56px; }
+
+  .product-row { margin-bottom: 72px; }
+  .shop-eyebrow { margin-bottom: 32px; }
+
+  .product-row__track { --cols: 2; --gap: 16px; }
+  .product-row__arrow { display: none; }
+
+  .shop-collection__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* The shop is light, like shop.a24films.com; the menu flips to dark text. */
+:root:has(.shop) {
+  --bg: #f1f1f1;
+  color-scheme: light;
+}
+
+:root:has(.shop) .site-nav,
+:root:has(.shop) .menu-drawer {
+  color: #000;
+}
+
+:root:has(.shop) .site-nav__link,
+:root:has(.shop) .site-nav__logo,
+:root:has(.shop) .site-nav__menu-button {
+  text-shadow: none;
+}
+
+:root:has(.shop) .menu-drawer__panel {
+  border-left-color: rgb(0 0 0 / 0.12);
+}
+
+:root:has(.shop) .menu-drawer::backdrop {
+  background: rgb(0 0 0 / 0.3);
+}

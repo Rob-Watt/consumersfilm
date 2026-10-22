@@ -610,27 +610,216 @@ html:has(.menu-drawer[open]) {
   }
 }
 
-/* The shop is light, like shop.a24films.com; the menu flips to dark text. */
-:root:has(.shop) {
-  --bg: #f1f1f1;
+/* Light pages (shop, notes), like A24's; the menu flips to dark text. */
+:root:has(.theme-light) {
   color-scheme: light;
 }
 
-:root:has(.shop) .site-nav,
-:root:has(.shop) .menu-drawer {
+:root:has(.shop) { --bg: #f1f1f1; }
+:root:has(.notes, .note) { --bg: #fff; }
+
+:root:has(.theme-light) .site-nav,
+:root:has(.theme-light) .menu-drawer {
   color: #000;
 }
 
-:root:has(.shop) .site-nav__link,
-:root:has(.shop) .site-nav__logo,
-:root:has(.shop) .site-nav__menu-button {
+:root:has(.theme-light) .site-nav__link,
+:root:has(.theme-light) .site-nav__logo,
+:root:has(.theme-light) .site-nav__menu-button {
   text-shadow: none;
 }
 
-:root:has(.shop) .menu-drawer__panel {
+:root:has(.theme-light) .menu-drawer__panel {
   border-left-color: rgb(0 0 0 / 0.12);
 }
 
-:root:has(.shop) .menu-drawer::backdrop {
+:root:has(.theme-light) .menu-drawer::backdrop {
   background: rgb(0 0 0 / 0.3);
+}
+
+/* ---------- Notes (layout after a24films.com/notes) ---------- */
+
+.notes,
+.note {
+  --fg: #0e0e0d;
+  --rule: #d6d4d1;
+  --tile: #ecebe9;
+  --gutter: clamp(16px, 1.7vw, 24px);
+  min-height: 100svh;
+  padding: calc(var(--inset) + 72px) var(--gutter) 120px;
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.notes__heading {
+  margin: 0 0 24px;
+  font-size: clamp(56px, 6.7vw, 96px);
+  font-weight: 480;
+  letter-spacing: -0.04em;
+  line-height: 0.87;
+}
+
+/* Tag pill + date */
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.note-pill {
+  display: inline-block;
+  padding: 2px 3px 1px;
+  border: 1px solid var(--fg);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.note-thumb {
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+.note-thumb__link {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.note-thumb__title {
+  font-size: 21px;
+  font-weight: 480;
+  line-height: 1.1;
+  min-height: 2.2em;      /* keeps images aligned when titles wrap */
+}
+
+.note-thumb--featured .note-thumb__title {
+  font-size: 27px;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  min-height: 0;
+}
+
+@media (hover: hover) {
+  .note-thumb__link:hover .note-thumb__title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+  }
+}
+
+.note-thumb__image {
+  display: block;
+  aspect-ratio: 16 / 10;
+  background: var(--tile);
+  overflow: hidden;
+}
+
+.note-thumb--featured .note-thumb__image {
+  aspect-ratio: 5 / 2;
+}
+
+.note-thumb__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.notes__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px 24px;
+  margin-top: 36px;
+}
+
+/* Blank placeholders until notes are published */
+.skeleton {
+  display: block;
+  background: var(--tile);
+}
+
+.skeleton--meta { width: 110px; height: 12px; }
+.skeleton--title { width: 70%; height: 22px; margin: 8px 0; }
+.is-placeholder .note-thumb__image { margin-top: 0; }
+
+.note-thumb.is-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 800px) {
+  .notes__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .note-thumb--featured .note-thumb__image { aspect-ratio: 16 / 10; }
+}
+
+/* Single note */
+.note article {
+  max-width: 1392px;
+  margin: 0 auto;
+}
+
+.note__header {
+  display: grid;
+  gap: 16px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+
+.note__title {
+  margin: 0 0 32px;
+  max-width: 20ch;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 480;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.note__image {
+  display: block;
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.note__body {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.note__body img {
+  max-width: 100%;
+  height: auto;
+  margin: 16px 0;
+}
+
+.note__body a { color: inherit; }
+
+.note__body blockquote {
+  margin: 32px 0;
+  padding-left: 20px;
+  border-left: 1px solid var(--fg);
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+/* Landing page: header wordmark in the red of the poster's CONSUMERS lettering
+   (sampled from close-up.jpg). */
+:root:has(.hero) .site-nav__logo {
+  color: #6b0006;
 }

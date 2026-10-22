@@ -1,4 +1,5 @@
 import { site, absoluteUrl } from "../../lib/site";
+import { getNotes } from "../../lib/notes";
 
 export const dynamic = "force-static";
 
@@ -40,6 +41,11 @@ export function GET() {
     `- [Sitemap](${absoluteUrl("/sitemap.xml")})`,
   ].filter(Boolean);
 
+  const notes = getNotes().map(
+    ({ slug, title, date, excerpt }) =>
+      `- [${title}](${absoluteUrl(`/notes/${slug}/`)})${date ? ` (${date})` : ""}${excerpt ? `: ${excerpt}` : ""}`
+  );
+
   const body = [
     `# ${site.title}`,
     "",
@@ -53,6 +59,7 @@ export function GET() {
     "",
     ...links,
     "",
+    ...(notes.length ? ["## Notes", "", ...notes, ""] : []),
   ].join("\n");
 
   return new Response(body, {

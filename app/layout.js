@@ -1,4 +1,4 @@
-import { Cinzel, Inter } from "next/font/google";
+import { Cinzel, DM_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import SiteNav from "../components/SiteNav";
 import { site, absoluteUrl } from "../lib/site";
@@ -6,6 +6,8 @@ import { site, absoluteUrl } from "../lib/site";
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 // Close to the serif title lettering on the poster art.
 const serif = Cinzel({ subsets: ["latin"], variable: "--font-serif" });
+// Dates and tags on Notes, like A24's monospace.
+const mono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
 
 const description = site.description || `${site.title} — ${site.tagline}`;
 const shareImage = {
@@ -47,7 +49,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang={site.language} className={`${sans.variable} ${serif.variable}`}>
+    <html lang={site.language} className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
       <body>
         <SiteNav />
         {children}

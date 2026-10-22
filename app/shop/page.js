@@ -17,7 +17,7 @@ export default function ShopPage() {
   const collectionItems = Array.from({ length: 5 }, (_, i) => collection.products[i] ?? null);
 
   return (
-    <main className="shop">
+    <main className="shop theme-light">
       <h1 className="visually-hidden">{item.title}</h1>
 
       {/* Featured product: large image left, details right. */}

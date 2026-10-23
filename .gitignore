@@ -11,3 +11,6 @@ out
 
 # Original full-size source videos (web copies live in public/videos)
 /videos/
+
+# Source documents (note text is copied into content/notes)
+/documents/

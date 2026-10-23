@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
       title: note.title,
       description: note.excerpt || undefined,
       publishedTime: note.date || undefined,
-      ...(note.image && { images: [absoluteUrl(note.image)] }),
+      ...(note.image && { images: [{ url: absoluteUrl(note.image), alt: note.imageAlt || undefined }] }),
     },
   };
 }
@@ -59,7 +59,7 @@ export default async function NotePage({ params }) {
           <h1 className="note__title">{note.title}</h1>
         </header>
         {note.image && (
-          <img className="note__image" src={note.image} alt="" />
+          <img className="note__image" src={note.image} alt={note.imageAlt} />
         )}
         <div className="note__body" dangerouslySetInnerHTML={{ __html: note.html }} />
       </article>

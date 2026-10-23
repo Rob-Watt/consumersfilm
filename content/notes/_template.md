@@ -6,6 +6,7 @@ title: "Title of the note"
 date: 2026-10-22            # newest note is shown first
 type: Journal               # the small tag, e.g. Journal, Interview, Script, BTS
 image: /images/notes/your-image.jpg   # put the image in public/images/notes/
+imageAlt: "Short description of the image, for screen readers and Google Images."
 excerpt: "One sentence summary for search results and link previews."
 featured: false             # true pins this note to the big spot at the top
 ---

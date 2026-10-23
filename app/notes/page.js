@@ -54,7 +54,7 @@ function NoteThumb({ note, featured = false }) {
         <NoteMeta note={note} />
         <span className="note-thumb__title">{note.title}</span>
         <span className="note-thumb__image">
-          {note.image && <img src={note.image} alt="" loading={featured ? "eager" : "lazy"} />}
+          {note.image && <img src={note.image} alt={note.imageAlt} loading={featured ? "eager" : "lazy"} />}
         </span>
       </Link>
     </article>

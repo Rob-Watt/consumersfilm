@@ -1175,3 +1175,92 @@ button.site-nav__link {
   outline: 1px solid currentColor;
   outline-offset: 2px;
 }
+
+/* ---------- BTS videos ---------- */
+
+.bts {
+  min-height: 100svh;
+  padding: calc(var(--inset) + 120px) calc(var(--inset) + 12px) 96px;
+  color: #fff;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.bts .page__title {
+  margin-bottom: 48px;
+}
+
+.bts-video {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: start;
+  padding-top: 24px;
+  border-top: 1px solid rgb(255 255 255 / 0.25);
+}
+
+.bts-video + .bts-video {
+  margin-top: 96px;
+}
+
+.bts-video__player video {
+  display: block;
+  width: auto;
+  height: min(78svh, 820px);
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #000;
+}
+
+.bts-video__text {
+  max-width: 640px;
+}
+
+.bts-video__title {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.bts-video__role {
+  margin: 8px 0 32px;
+  color: rgb(255 255 255 / 0.6);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bts-video__transcript-heading {
+  margin: 0 0 12px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.bts-video__transcript p {
+  margin: 0 0 16px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.88);
+}
+
+@media (max-width: 800px) {
+  .bts {
+    padding-top: calc(var(--inset) + 96px);
+  }
+
+  .bts-video {
+    grid-template-columns: 1fr;
+  }
+
+  .bts-video__player video {
+    width: 100%;
+    height: auto;
+    max-height: 80svh;
+    margin: 0 auto;
+  }
+}

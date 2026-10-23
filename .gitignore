@@ -8,3 +8,6 @@ out
 
 # Local secrets (Supabase keys for local testing)
 .env*.local
+
+# Original full-size source videos (web copies live in public/videos)
+/videos/

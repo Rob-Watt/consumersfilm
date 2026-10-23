@@ -336,7 +336,7 @@ html:has(.menu-drawer[open]) {
   min-height: 100svh;
   /* Same spacing as Notes and BTS so the headings line up. */
   padding: calc(var(--inset) + 72px) clamp(16px, 1.7vw, 24px) 64px;
-  color: #fff;
+  color: #0e0e0d;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
@@ -608,7 +608,7 @@ html:has(.menu-drawer[open]) {
 }
 
 :root:has(.shop) { --bg: #f1f1f1; }
-:root:has(.notes, .note) { --bg: #fff; }
+:root:has(.notes, .note, .bts, .page) { --bg: #fff; }
 
 :root:has(.theme-light) .site-nav,
 :root:has(.theme-light) .menu-drawer {
@@ -1175,7 +1175,7 @@ button.site-nav__link {
   min-height: 100svh;
   /* Same spacing as Notes so the headings line up. */
   padding: calc(var(--inset) + 72px) clamp(16px, 1.7vw, 24px) 96px;
-  color: #fff;
+  color: #0e0e0d;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
@@ -1185,7 +1185,7 @@ button.site-nav__link {
   gap: clamp(24px, 5vw, 72px);
   align-items: start;
   padding-top: 24px;
-  border-top: 1px solid rgb(255 255 255 / 0.25);
+  border-top: 1px solid #d6d4d1;
 }
 
 .bts-video + .bts-video {
@@ -1219,7 +1219,7 @@ button.site-nav__link {
 
 .bts-video__role {
   margin: 8px 0 32px;
-  color: rgb(255 255 255 / 0.6);
+  color: #6e6e6e;
   font-size: 14px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1232,7 +1232,7 @@ button.site-nav__link {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 0.6);
+  color: #6e6e6e;
 }
 
 .bts-video__transcript {
@@ -1245,11 +1245,11 @@ button.site-nav__link {
   /* Soft edges: text fades out at the top and bottom as it scrolls. */
   mask-image: linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 56px), transparent);
   scrollbar-width: thin;
-  scrollbar-color: rgb(255 255 255 / 0.35) transparent;
+  scrollbar-color: rgb(0 0 0 / 0.3) transparent;
 }
 
 .bts-video__transcript:focus-visible {
-  outline: 1px solid rgb(255 255 255 / 0.6);
+  outline: 1px solid rgb(0 0 0 / 0.5);
   outline-offset: 4px;
 }
 
@@ -1257,7 +1257,7 @@ button.site-nav__link {
   margin: 0 0 16px;
   font-size: 17px;
   line-height: 1.6;
-  color: rgb(255 255 255 / 0.88);
+  color: #0e0e0d;
 }
 
 @media (max-width: 800px) {

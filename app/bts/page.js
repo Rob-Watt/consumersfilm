@@ -27,7 +27,7 @@ const videoJsonLd = (video) => ({
 
 export default function BtsPage() {
   return (
-    <main className="bts">
+    <main className="bts theme-light">
       <h1 className="display-heading">{item.title}</h1>
 
       {btsVideos.map((video) => (

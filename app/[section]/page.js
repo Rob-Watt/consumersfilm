@@ -27,7 +27,7 @@ export default async function SectionPage({ params }) {
   if (!item) notFound();
 
   return (
-    <main className="page">
+    <main className="page theme-light">
       <h1 className="display-heading">{item.title}</h1>
     </main>
   );

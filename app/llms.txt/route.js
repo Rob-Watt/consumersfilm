@@ -24,6 +24,7 @@ export function GET() {
     line("Producer", names(site.producers)),
     line("Cinematographer", names(site.cinematographers)),
     line("Editor", names(site.editors)),
+    line("Composer", names(site.composers)),
     line(
       "Cast",
       site.cast

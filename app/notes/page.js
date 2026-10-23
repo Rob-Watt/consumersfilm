@@ -21,7 +21,7 @@ export default function NotesPage() {
 
   return (
     <main className="notes theme-light">
-      <h1 className="notes__heading">{item.title}</h1>
+      <h1 className="display-heading">{item.title}</h1>
 
       <NoteThumb note={featured} featured />
 

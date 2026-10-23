@@ -28,7 +28,7 @@ const videoJsonLd = (video) => ({
 export default function BtsPage() {
   return (
     <main className="bts">
-      <h1 className="page__title">{item.title}</h1>
+      <h1 className="display-heading">{item.title}</h1>
 
       {btsVideos.map((video) => (
         <section key={video.slug} id={video.slug} className="bts-video" aria-labelledby={`${video.slug}-title`}>
@@ -53,7 +53,7 @@ export default function BtsPage() {
             <h2 id={`${video.slug}-title`} className="bts-video__title">{video.title}</h2>
             <p className="bts-video__role">{video.role}</p>
             <h3 className="bts-video__transcript-heading">Transcript</h3>
-            <div className="bts-video__transcript">
+            <div className="bts-video__transcript" tabIndex={0} role="region" aria-label={`Transcript: ${video.title}`}>
               {video.transcript.map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
               ))}

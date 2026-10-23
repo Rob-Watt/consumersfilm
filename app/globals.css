@@ -334,18 +334,10 @@ html:has(.menu-drawer[open]) {
 
 .page {
   min-height: 100svh;
-  padding: calc(var(--inset) + 120px) calc(var(--inset) + 12px) 64px;
+  /* Same spacing as Notes and BTS so the headings line up. */
+  padding: calc(var(--inset) + 72px) clamp(16px, 1.7vw, 24px) 64px;
   color: #fff;
   font-family: var(--font-sans), system-ui, sans-serif;
-}
-
-.page__title {
-  margin: 0;
-  font-family: var(--font-serif), serif;
-  font-size: clamp(36px, 8vw, 96px);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 /* ---------- Shop (layout after shop.a24films.com) ---------- */
@@ -651,7 +643,8 @@ html:has(.menu-drawer[open]) {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-.notes__heading {
+/* Large page heading shared by Notes and BTS. */
+.display-heading {
   margin: 0 0 24px;
   font-size: clamp(56px, 6.7vw, 96px);
   font-weight: 480;
@@ -1180,13 +1173,10 @@ button.site-nav__link {
 
 .bts {
   min-height: 100svh;
-  padding: calc(var(--inset) + 120px) calc(var(--inset) + 12px) 96px;
+  /* Same spacing as Notes so the headings line up. */
+  padding: calc(var(--inset) + 72px) clamp(16px, 1.7vw, 24px) 96px;
   color: #fff;
   font-family: var(--font-sans), system-ui, sans-serif;
-}
-
-.bts .page__title {
-  margin-bottom: 48px;
 }
 
 .bts-video {
@@ -1213,6 +1203,10 @@ button.site-nav__link {
 
 .bts-video__text {
   max-width: 640px;
+  /* Same height as the video; the transcript scrolls inside it. */
+  display: flex;
+  flex-direction: column;
+  height: min(78svh, 820px);
 }
 
 .bts-video__title {
@@ -1232,13 +1226,31 @@ button.site-nav__link {
 }
 
 .bts-video__transcript-heading {
-  margin: 0 0 12px;
+  margin: 0 0 4px;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgb(255 255 255 / 0.6);
+}
+
+.bts-video__transcript {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Bottom padding lets the final line scroll clear of the fade. */
+  padding: 24px 12px 56px 0;
+  /* Soft edges: text fades out at the top and bottom as it scrolls. */
+  mask-image: linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 56px), transparent);
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.35) transparent;
+}
+
+.bts-video__transcript:focus-visible {
+  outline: 1px solid rgb(255 255 255 / 0.6);
+  outline-offset: 4px;
 }
 
 .bts-video__transcript p {
@@ -1249,10 +1261,6 @@ button.site-nav__link {
 }
 
 @media (max-width: 800px) {
-  .bts {
-    padding-top: calc(var(--inset) + 96px);
-  }
-
   .bts-video {
     grid-template-columns: 1fr;
   }
@@ -1262,5 +1270,13 @@ button.site-nav__link {
     height: auto;
     max-height: 80svh;
     margin: 0 auto;
+  }
+
+  .bts-video__text {
+    height: auto;
+  }
+
+  .bts-video__transcript {
+    max-height: 55svh;
   }
 }

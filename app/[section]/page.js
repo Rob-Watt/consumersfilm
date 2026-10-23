@@ -28,7 +28,7 @@ export default async function SectionPage({ params }) {
 
   return (
     <main className="page">
-      <h1 className="page__title">{item.title}</h1>
+      <h1 className="display-heading">{item.title}</h1>
     </main>
   );
 }

@@ -1119,3 +1119,59 @@ button.site-nav__link {
 .legal__body a { color: inherit; }
 
 .account-dialog__fine a { color: inherit; }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 calc(var(--inset) + 12px);
+  padding: 20px 0 calc(20px + env(safe-area-inset-bottom));
+  border-top: 1px solid currentColor;
+  color: #fff;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+:root:has(.theme-light) .site-footer {
+  color: #0e0e0d;
+}
+
+.site-footer__legal {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-footer__legal a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.site-footer__social {
+  display: flex;
+  gap: 8px;
+  margin: 0 -8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__social a {
+  display: flex;
+  padding: 8px;
+  color: inherit;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.site-footer__social a:hover,
+.site-footer__social a:focus-visible {
+  opacity: 1;
+}
+
+.site-footer :focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+}

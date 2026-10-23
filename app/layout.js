@@ -1,6 +1,7 @@
 import { Cinzel, DM_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "../components/AuthProvider";
+import SiteFooter from "../components/SiteFooter";
 import SiteNav from "../components/SiteNav";
 import { site, absoluteUrl } from "../lib/site";
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <SiteNav />
           {children}
+          <SiteFooter />
         </AuthProvider>
       </body>
     </html>

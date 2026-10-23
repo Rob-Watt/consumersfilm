@@ -25,6 +25,12 @@ export function GET() {
     line("Cinematographer", names(site.cinematographers)),
     line("Editor", names(site.editors)),
     line("Composer", names(site.composers)),
+    ...site.crew.map(({ name, role, company, specialThanks }) =>
+      line(
+        specialThanks ? `Special thanks (${role.toLowerCase()})` : role,
+        company ? `${name} (${company})` : name
+      )
+    ),
     line(
       "Cast",
       site.cast

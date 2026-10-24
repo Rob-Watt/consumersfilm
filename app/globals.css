@@ -407,19 +407,6 @@ html:has(.menu-drawer[open]) {
   text-decoration: none;
 }
 
-.shop-hero__placeholder {
-  display: grid;
-  gap: 12px;
-}
-
-.shop-hero__bar {
-  display: block;
-  height: 32px;
-  background: var(--tile);
-}
-
-.shop-hero__bar--short { width: 60%; }
-
 /* Section label: thin rule with an underlined label, like A24's. */
 .shop-eyebrow {
   border-top: 1px solid #000;
@@ -1271,4 +1258,15 @@ button.site-nav__link {
   .bts-video__transcript {
     max-height: 55svh;
   }
+}
+
+/* "Coming soon" on placeholder pages (News), styled like a Notes title. */
+.page__coming-soon {
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px solid #d6d4d1;
+  font-size: 27px;
+  font-weight: 480;
+  letter-spacing: -0.005em;
+  line-height: 1;
 }

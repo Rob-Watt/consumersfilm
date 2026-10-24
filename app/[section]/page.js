@@ -29,6 +29,7 @@ export default async function SectionPage({ params }) {
   return (
     <main className="page theme-light">
       <h1 className="display-heading">{item.title}</h1>
+      {!item.ready && <p className="page__coming-soon">Coming soon</p>}
     </main>
   );
 }

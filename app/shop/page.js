@@ -43,12 +43,11 @@ export default function ShopPage() {
               )}
             </>
           ) : (
-            <div className="shop-hero__placeholder" aria-hidden="true">
-              <span className="product-card__bar product-card__bar--short" />
-              <span className="shop-hero__bar" />
-              <span className="shop-hero__bar" />
-              <span className="shop-hero__bar shop-hero__bar--short" />
-            </div>
+            // Until a product is featured.
+            <>
+              <p className="shop-hero__eyebrow">{item.title}</p>
+              <h2 className="shop-hero__title">Coming soon</h2>
+            </>
           )}
         </div>
       </section>

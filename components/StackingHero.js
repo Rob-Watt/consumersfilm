@@ -111,19 +111,35 @@ function Slide({ slide, index, isFinal, layout }) {
       style={isFinal ? { clipPath } : undefined}
     >
       <motion.div className="media" style={{ y }}>
-        {/* Phones held upright get the portrait poster when there is one;
-            each device downloads only the image it shows. */}
-        <picture>
-          {slide.portraitSrc && (
-            <source media="(max-aspect-ratio: 1/1)" srcSet={slide.portraitSrc} />
-          )}
+        {slide.portraitSrc ? (
+          // Phones held upright get the portrait poster. Both images are in the
+          // page and CSS shows the one for the current orientation, because
+          // iPhone Safari doesn't reliably swap <picture> sources on rotation.
+          // Lazy loading means only the visible one is downloaded.
+          <>
+            <img
+              className="media__wide"
+              src={slide.src}
+              alt={slide.alt}
+              loading="lazy"
+              fetchPriority={index === 0 ? "high" : "auto"}
+            />
+            <img
+              className="media__tall"
+              src={slide.portraitSrc}
+              alt={slide.alt}
+              loading="lazy"
+              fetchPriority={index === 0 ? "high" : "auto"}
+            />
+          </>
+        ) : (
           <img
             src={slide.src}
             alt={slide.alt}
             loading={index === 0 ? "eager" : "lazy"}
             fetchPriority={index === 0 ? "high" : "auto"}
           />
-        </picture>
+        )}
       </motion.div>
       {!isFinal && <motion.div className="shade" style={{ opacity: shade }} />}
     </motion.div>

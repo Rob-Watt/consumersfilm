@@ -75,14 +75,6 @@ html, body {
   }
 }
 
-/* Short landscape screens (phones held sideways): show the title image whole. */
-@media (orientation: landscape) and (max-height: 500px) {
-  .slide--whole .media img {
-    object-fit: contain;
-    object-position: center;
-  }
-}
-
 /* Portrait screens: a full-height card would crop the 16:9 stills to a sliver,
    so each card takes the photo's own shape and pins in the middle of the
    screen, letterboxed like a film. The gap keeps the next card waiting below. */

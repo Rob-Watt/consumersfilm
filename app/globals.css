@@ -51,6 +51,12 @@ html, body {
   will-change: transform;
 }
 
+.media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .media img {
   width: 100%;
   height: 100%;
@@ -103,6 +109,25 @@ html, body {
 
   .slide + .slide {
     margin-top: calc(var(--stick) + 2rem);
+  }
+
+  /* The poster card takes the poster's 2:3 shape (capped to fit the screen)
+     and pins in the middle like the others; shown whole, never cropped. */
+  .slide--poster {
+    --poster-h: min(
+      calc((100vw - 2 * var(--inset)) * 3 / 2 + 2 * var(--inset)),
+      calc(100svh - 2rem)
+    );
+    height: var(--poster-h);
+  }
+
+  .slide--poster.slide--sticky {
+    top: calc((100svh - var(--poster-h)) / 2);
+  }
+
+  .slide--poster .media img {
+    object-fit: contain;
+    object-position: center;
   }
 }
 

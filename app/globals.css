@@ -67,34 +67,45 @@ html, body {
   object-position: left bottom;
 }
 
-/* On tall/narrow screens, cover would crop the title, so show it whole. */
-@media (max-aspect-ratio: 3/2) {
+/* Squarish landscape screens (e.g. tablets): cover would crop the title, so
+   show it whole. */
+@media (orientation: landscape) and (max-aspect-ratio: 3/2) {
   .slide--whole .media img {
     object-fit: contain;
     object-position: center;
   }
 }
 
-/* Portrait screens: a full-height card would crop the 16:9 stills to a sliver,
-   so each card takes the photo's own shape and pins in the middle of the
-   screen, letterboxed like a film. The gap keeps the next card waiting below. */
-@media (max-aspect-ratio: 1/1) {
-  :root {
-    --card-h: calc((100vw - 2 * var(--inset)) * 9 / 16 + 2 * var(--inset));
-    --stick: calc((100svh - var(--card-h)) / 2);
+/* Each card holds a wide and a vertical photo. Screens held upright show the
+   vertical one, filling the card like desktop. The swap is pure CSS on
+   orientation so rotating always shows the right image (iPhone Safari doesn't
+   reliably swap <picture> sources on rotation). */
+.media .media__tall {
+  display: none;
+}
+
+@media (orientation: portrait) {
+  .media .media__wide {
+    display: none;
   }
 
-  .slide,
-  .slide--final {
-    height: var(--card-h);
+  .media .media__tall {
+    display: block;
   }
 
-  .slide--sticky {
-    top: var(--stick);
+  /* The vertical key art's title sits along the bottom; crop only the sides. */
+  .slide--whole .media .media__tall {
+    object-fit: cover;
+    object-position: center bottom;
   }
+}
 
-  .slide + .slide {
-    margin-top: calc(var(--stick) + 2rem);
+/* On extra-tall screens (no browser toolbars) covering would clip the ends of
+   the title, so show the key art whole; its dark edges hide the bars. */
+@media (orientation: portrait) and (max-aspect-ratio: 1/2) {
+  .slide--whole .media .media__tall {
+    object-fit: contain;
+    object-position: center;
   }
 }
 

@@ -100,12 +100,33 @@ function Slide({ slide, index, isFinal, layout }) {
       style={isFinal ? { clipPath } : undefined}
     >
       <motion.div className="media" style={{ y }}>
-        <img
-          src={slide.src}
-          alt={slide.alt}
-          loading={index === 0 ? "eager" : "lazy"}
-          fetchPriority={index === 0 ? "high" : "auto"}
-        />
+        {slide.portraitSrc ? (
+          // Both versions load up front (no lazy loading): Safari may never
+          // load a lazy image that only becomes visible after rotating.
+          <>
+            <img
+              className="media__wide"
+              src={slide.src}
+              alt={slide.alt}
+              decoding="async"
+              fetchPriority={index === 0 ? "high" : "auto"}
+            />
+            <img
+              className="media__tall"
+              src={slide.portraitSrc}
+              alt={slide.alt}
+              decoding="async"
+              fetchPriority={index === 0 ? "high" : "auto"}
+            />
+          </>
+        ) : (
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
+          />
+        )}
       </motion.div>
       {!isFinal && <motion.div className="shade" style={{ opacity: shade }} />}
     </motion.div>
